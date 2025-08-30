@@ -1,54 +1,26 @@
 // Ygoprodeck API link
 const url = 'https://db.ygoprodeck.com/api/v7/cardinfo.php?misc=yes';
 
-const toggleDarkMode = () => {
-    var body = document.body;
-    var searchBar = document.getElementById("search-bar");
-    var filterBar = document.getElementById("filter-bar");
-    var darkMode = document.getElementById("dark-mode");
-    var name = document.getElementById("name");
-    var card = document.getElementById("card-type");
-    var type = document.getElementById("type");
-    var attribute = document.getElementById("attribute");
-    var format = document.getElementById("format");
-    var filter = document.getElementById("filter");
-    var submit = document.getElementById("submit");
-    var apply = document.getElementById("apply");
-    var reset = document.getElementById("reset");
-    var order = document.getElementById("order");
-    var sort = document.getElementById("sort");
-    
-    body.classList.toggle("color-dark");
-    searchBar.classList.toggle("color-medium");
-    filterBar.classList.toggle("color-medium");
-    darkMode.classList.toggle("color-light");
-    name.classList.toggle("color-light");
-    card.classList.toggle("color-light");
-    type.classList.toggle("color-light");
-    attribute.classList.toggle("color-light");
-    format.classList.toggle("color-light");
-    filter.classList.toggle("color-light");
-    submit.classList.toggle("color-light");
-    reset.classList.toggle("color-light");
-    order.classList.toggle("color-light");
-    apply.classList.toggle("color-light");
-    sort.classList.toggle("color-light");
-};
-
 const toggleFilters = () => {
     var filterBar = document.getElementById("filter-bar");
-    var gallery = document.getElementById("gallery");
     
-    if (filterBar.style.marginTop === "59px" || filterBar.style.marginTop === "") {
+    if (filterBar.style.display === "none") {
         // Disable display modal
-        filterBar.style.marginTop = "0px";
-        gallery.style.marginTop = "-59px"
+        filterBar.style.display = "flex";
 
     }
-    else if (filterBar.style.marginTop = "0px") {
+    else if (filterBar.style.marginTop = "flex") {
         // Initialize style display if empty
-        filterBar.style.marginTop = "59px";
-        gallery.style.marginTop = "0px"
+        filterBar.style.display = "none";
+    }   
+};
+
+const closeFilters = () => {
+    var filterBar = document.getElementById("filter-bar");
+   
+    if (filterBar.style.marginTop = "flex") {
+        // Initialize style display if empty
+        filterBar.style.display = "none";
     }   
 };
 
@@ -298,6 +270,8 @@ const search = () => {
 
     // Populate database with filtered results from API
     database.search(filteredURL);
+
+    closeFilters();
 
     // Set scroll to top screen
     document.body.scrollTop = 0; // For Safari
